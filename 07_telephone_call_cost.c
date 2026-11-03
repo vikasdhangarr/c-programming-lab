@@ -14,39 +14,42 @@ Apply the following rules:
 
 Display the gross cost and the final net cost after discounts and tax.
 
-  #include <stdio.h>
-#include <conio.h>
+#include <stdio.h>
 
-void main()
+int main()
 {
-    int hour, min, length;
-    float gross, net, tax;
+    int hour, minutes;
+    float grossCost, discount = 0;
+    float discountedCost, tax, finalCost;
 
-    printf("Enter starting hour (0-23)");
+    printf("Enter starting hour (0-23): ");
     scanf("%d", &hour);
 
-    printf("Enter starting minute (0-59)");
-    scanf("%d", &min);
+    printf("Enter call duration in minutes: ");
+    scanf("%d", &minutes);
 
-    printf("Enter length of call in minute");
-    scanf("%d", &length);
+    grossCost = minutes * 0.40;
 
-    gross = length * 0.40;
-    net = gross;
-
-    if (hour >= 18 || hour < 8)
+    if (hour >= 21 || hour < 8)
     {
-        net = net * 0.50;
+        discount = discount + 50;
     }
-    if (length > 60)
+
+    if (minutes > 60)
     {
-        net = net * 0.85;
+        discount = discount + 15;
     }
-    tax = net * 0.04;
-    net = net + tax;
 
-    printf("\n Gross cost = %.2f rupees", gross);
-    printf("\n Net Cost (after discount and tax) = %.2f", net);
+    discountedCost = grossCost - (grossCost * discount / 100);
 
-    getch();
+    tax = discountedCost * 0.04;
+
+    finalCost = discountedCost + tax;
+
+    printf("\nGross Cost = %.2f\n", grossCost);
+    printf("Cost After Discount = %.2f\n", discountedCost);
+    printf("Tax = %.2f\n", tax);
+    printf("Final Cost = %.2f\n", finalCost);
+
+    return 0;
 }
