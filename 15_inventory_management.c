@@ -22,6 +22,7 @@
 
 // Use an array and loops to implement the inventory management system.
 
+```
 #include <stdio.h>
 
 int main()
@@ -32,17 +33,11 @@ int main()
 
     printf("Enter initial inventory:\n");
 
-    printf("Desktop: ");
-    scanf("%d", &inventory[0]);
-
-    printf("Laptop: ");
-    scanf("%d", &inventory[1]);
-
-    printf("Mainframe: ");
-    scanf("%d", &inventory[2]);
-
-    printf("Terminal: ");
-    scanf("%d", &inventory[3]);
+    for (i = 0; i < 4; i++)
+    {
+        printf("Enter inventory for product %d: ", i + 1);
+        scanf("%d", &inventory[i]);
+    }
 
     for (day = 1; day <= 7; day++)
     {
@@ -58,12 +53,11 @@ int main()
                 printf("Enter amount (+ purchase / - sale): ");
                 scanf("%d", &amount);
 
-                inventory[id - 1] =
-                    inventory[id - 1] + amount;
+                inventory[id - 1] += amount;
             }
             else
             {
-                printf("Invalid Product ID.\n");
+                printf("Invalid Product ID\n");
             }
 
             printf("Enter Product ID (1-4, 0 to end day): ");
